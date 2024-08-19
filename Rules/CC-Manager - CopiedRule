@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1724099985230" id="0a00020f916c1a9881916c5dff4e006c" language="beanshell" name="CC-Manager - CopiedRule" type="EmailRecipient">
+  <Description>This rule is used to select an identity or a list of identities who will receive email.</Description>
+  <Signature returnType="String or List of Strings">
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="item">
+        <Description>
+          The sailpoint.object.Notifiable Interface for objects that can be reminded, escalated, and expired. 
+        </Description>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="identity name or names">
+        <Description>
+        You can return an identity name or a list of identity names.
+        </Description>
+      </Argument>
+    </Returns>
+  </Signature>
+  <Source>import sailpoint.object.Identity;
+
+Identity identity = item.getOwner();
+Identity mgrIdentity = identity.getManager();
+String manager = mgrIdentity.getName();
+return manager;</Source>
+</Rule>
